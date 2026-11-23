@@ -1,26 +1,281 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-ink: #0f2a1b; /* deep forest: text + dark sections */
+  --color-ink-2: #173d28;
+  --color-hero: #08190f; /* darker forest for the home hero */
+  --color-paper: #f7f6f2;
+  --color-muted: #6b7280;
+  --color-line: #e6e3db;
+  --color-accent: #1f6b3d; /* primary: forest green */
+  --color-accent-2: #f5c22b; /* secondary: yellow */
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-grotesk);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* On dark (forest) backgrounds the accent switches to yellow so it stays readable. */
+.bg-ink,
+.on-dark {
+  --color-accent: var(--color-accent-2);
+  --btn-fg: var(--color-ink);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: white;
+}
+
+/* Elements animated in by <Motion /> start hidden only when motion is allowed.
+   If JS fails, the noscript style in layout.tsx shows them. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal]:not([data-reveal="stagger"]),
+  [data-reveal="stagger"] > * {
+    opacity: 0;
+  }
+}
+
+/* Hero slider */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-slide [data-in] {
+    opacity: 0;
+  }
+  .word-in {
+    transform: translateY(110%);
+  }
+}
+.hero-progress {
+  transform-origin: left;
+  animation-name: hero-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+@keyframes hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.hero-ctrl {
+  display: grid;
+  place-items: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 999px;
+  border: 1px solid rgb(255 255 255 / 0.2);
+  font-size: 0.8rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+.hero-ctrl:hover {
+  background: white;
+  color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.container-x {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 768px) {
+  .container-x {
+    padding-inline: 2rem;
+  }
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.85rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 0.25s,
+    color 0.25s,
+    box-shadow 0.25s;
+  will-change: transform;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn:active {
+  transform: translateY(0) scale(0.98);
+}
+.btn-primary {
+  background: var(--color-accent);
+  color: var(--btn-fg, white);
+  box-shadow: 0 8px 24px -8px color-mix(in srgb, var(--color-accent) 60%, transparent);
+}
+.btn-primary:hover {
+  box-shadow: 0 12px 28px -8px color-mix(in srgb, var(--color-accent) 75%, transparent);
+}
+.btn-ghost {
+  border: 1px solid currentColor;
+}
+.btn-ghost:hover {
+  background: var(--color-ink);
+  color: white;
+  border-color: var(--color-ink);
+}
+.on-dark .btn-ghost:hover {
+  background: white;
+  color: var(--color-ink);
+  border-color: white;
+}
+
+/* Flowing fill: a circle grows from where the cursor enters the button. */
+.btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: var(--mx, 50%);
+  top: var(--my, 50%);
+  width: 0;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  translate: -50% -50%;
+  transition: width 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+.btn:hover::before {
+  width: 260%;
+}
+.btn-primary::before {
+  background: color-mix(in srgb, var(--color-accent) 70%, black);
+}
+.on-dark .btn-primary::before,
+.bg-ink .btn-primary::before {
+  background: color-mix(in srgb, var(--color-accent) 75%, white);
+}
+.btn-ghost::before {
+  background: var(--color-ink);
+}
+.on-dark .btn-ghost::before {
+  background: white;
+}
+/* With the fill doing the work, ghost buttons keep a transparent background. */
+.fx .btn-ghost:hover {
+  background: transparent;
+}
+
+/* When JS hover effects are active, anime.js owns the transform. */
+.fx .btn,
+.fx .btn:hover,
+.fx .btn:active,
+.fx .card-hover,
+.fx .card-hover:hover {
+  transform: none;
+}
+.fx .btn {
+  transition: background-color 0.25s, color 0.35s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--color-line);
+  border-radius: 1.25rem;
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s,
+    border-color 0.35s;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -20px rgb(11 15 26 / 0.25);
+  border-color: transparent;
+}
+.card-hover {
+  position: relative;
+  will-change: transform;
+}
+.fx .card-hover {
+  transition: box-shadow 0.35s, border-color 0.35s;
+}
+.fx .card-hover:hover {
+  box-shadow: 0 30px 50px -24px rgb(15 42 27 / 0.35);
+}
+/* Soft spotlight that follows the cursor across a card. */
+.card-hover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--color-accent) 12%, transparent), transparent 60%);
+}
+.card-hover:hover::after {
+  opacity: 1;
+}
+
+.grain {
+  background-image: radial-gradient(circle at 15% 10%, rgb(52 160 95 / 0.3), transparent 45%),
+    radial-gradient(circle at 85% 30%, rgb(245 194 43 / 0.12), transparent 35%);
+}
+
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+.prose-lite p {
+  line-height: 1.8;
+  color: #374151;
+  margin-bottom: 1.25rem;
+}
+.prose-lite h2 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 2.5rem 0 1rem;
+  scroll-margin-top: 6rem;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
 }
