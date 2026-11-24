@@ -133,7 +133,7 @@ export default function HeroSlider() {
         touchX.current = null;
       }}
     >
-      <div className="container-x pt-32 md:pt-40 pb-8 min-h-[100svh] flex flex-col">
+      <div className="container-x pt-24 md:pt-40 pb-5 md:pb-8 md:min-h-[100svh] flex flex-col">
         {/* All slides share one grid cell so the hero keeps the height of the tallest slide. */}
         <div className="grid flex-1 items-center">
           {slides.map((s, i) => {
@@ -152,36 +152,36 @@ export default function HeroSlider() {
                 inert={!active}
                 className={`hero-slide [grid-area:1/1] transition-opacity duration-500 ${active ? "opacity-100" : "opacity-0 pointer-events-none"}`}
               >
-                <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr] lg:items-end">
+                <div className="grid gap-6 md:gap-10 lg:grid-cols-[1.6fr_1fr] lg:items-end">
                   <div>
                     <p className="eyebrow" data-in>
                       {s.eyebrow}
                     </p>
-                    <Heading className="mt-5 font-display text-[2.5rem] leading-[1.03] sm:text-6xl lg:text-7xl font-bold tracking-tight">
+                    <Heading className="mt-3 md:mt-5 font-display text-[2.1rem] leading-[1.05] sm:text-6xl lg:text-7xl font-bold tracking-tight">
                       {s.title.split(" ").map((word, w) => (
                         <span key={w} className="w inline-block overflow-hidden align-bottom pb-[0.08em] mr-[0.25em]">
                           <span className={`word-in inline-block ${word === s.highlight ? "text-accent" : ""}`}>{word}</span>
                         </span>
                       ))}
                     </Heading>
-                    <p className="mt-6 max-w-xl text-lg text-white/75" data-in>
+                    <p className="mt-4 md:mt-6 max-w-xl text-[0.95rem] md:text-lg text-white/75" data-in>
                       {s.text}
                     </p>
-                    <div className="mt-8 flex flex-wrap gap-3" data-in>
+                    <div className="mt-5 md:mt-8 flex flex-wrap gap-2.5 md:gap-3" data-in>
                       <ConsultButton />
                       <Link href={s.link.href} className="btn btn-ghost">
                         {s.link.label}
                       </Link>
                     </div>
-                    <p className="mt-8 text-sm text-white/50" data-in>
+                    <p className="mt-5 md:mt-8 text-xs md:text-sm text-white/50" data-in>
                       {s.trust}
                     </p>
                   </div>
-                  <dl className="grid grid-cols-2 lg:grid-cols-1 gap-4">
+                  <dl className="grid grid-cols-2 lg:grid-cols-1 gap-3 md:gap-4">
                     {s.stats.map((st) => (
-                      <div key={st.label} className="rounded-2xl border border-white/10 bg-white/5 p-5 md:p-6" data-in>
-                        <dd className="font-display text-4xl md:text-5xl font-bold text-accent">{st.value}</dd>
-                        <dt className="mt-1 text-sm text-white/70">{st.label}</dt>
+                      <div key={st.label} className="rounded-2xl border border-white/10 bg-white/5 p-3.5 md:p-6" data-in>
+                        <dd className="font-display text-3xl md:text-5xl font-bold text-accent">{st.value}</dd>
+                        <dt className="mt-1 text-xs md:text-sm leading-snug text-white/70">{st.label}</dt>
                       </div>
                     ))}
                   </dl>
@@ -192,7 +192,7 @@ export default function HeroSlider() {
         </div>
 
         {/* Controls: numbered tabs with progress, counter, pause, prev/next */}
-        <div className="mt-12 flex items-center gap-6 border-t border-white/10 pt-5">
+        <div className="mt-8 md:mt-12 flex items-center gap-4 md:gap-6 border-t border-white/10 pt-4 md:pt-5 pr-14 md:pr-0">
           <div className="hidden md:grid flex-1 grid-cols-4 gap-6">
             {slides.map((s, i) => (
               <button
@@ -230,7 +230,7 @@ export default function HeroSlider() {
             />
           </span>
 
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-1.5 md:gap-2 shrink-0">
             <span className="font-display text-sm tabular-nums mr-2" aria-live="polite">
               {pad(index + 1)} <span className="text-white/40">/ {pad(count)}</span>
             </span>

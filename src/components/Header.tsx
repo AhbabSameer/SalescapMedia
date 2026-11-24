@@ -70,10 +70,10 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <ConsultButton className="btn btn-primary !py-2.5 !px-4 text-sm hidden sm:inline-flex">Free Consultation</ConsultButton>
+          <ConsultButton className="btn btn-primary !py-2.5 !px-4 text-sm max-sm:!hidden">Free Consultation</ConsultButton>
           <button
             onClick={() => setOpen((v) => !v)}
-            className="lg:hidden grid h-10 w-10 place-items-center rounded-full border border-current/20"
+            className="lg:hidden grid h-9 w-9 md:h-10 md:w-10 place-items-center rounded-full border border-current/20"
             aria-label="Toggle menu"
             aria-expanded={open}
           >
@@ -89,7 +89,7 @@ export default function Header() {
         <div ref={menu} className="lg:hidden border-t border-line bg-paper h-[calc(100dvh-4rem)] overflow-y-auto">
           <nav className="container-x flex flex-col py-6">
             {nav.map((item, i) => (
-              <Link key={item.href} href={item.href} className="flex items-baseline gap-4 border-b border-line py-4 font-display text-2xl font-bold">
+              <Link key={item.href} href={item.href} className="flex items-baseline gap-4 border-b border-line py-3 md:py-4 font-display text-xl md:text-2xl font-bold">
                 <span className="text-xs text-muted font-sans">0{i + 1}</span>
                 {item.label}
               </Link>

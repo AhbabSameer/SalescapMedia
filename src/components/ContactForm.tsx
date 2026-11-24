@@ -42,11 +42,11 @@ export default function ContactForm({ compact = false }: { compact?: boolean }) 
   }
 
   const input =
-    "w-full rounded-xl border border-line bg-white px-4 py-3 text-sm outline-none transition focus:border-accent focus:ring-4 focus:ring-accent/15";
+    "w-full rounded-xl border border-line bg-white px-3.5 py-2.5 md:px-4 md:py-3 text-base md:text-sm outline-none transition focus:border-accent focus:ring-4 focus:ring-accent/15";
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-4">
-      <div className={`grid gap-4 ${compact ? "" : "sm:grid-cols-2"}`}>
+    <form onSubmit={onSubmit} className="grid gap-3 md:gap-4">
+      <div className={`grid gap-3 md:gap-4 ${compact ? "" : "sm:grid-cols-2"}`}>
         <label className="grid gap-1.5 text-sm font-medium">
           Full name *
           <input name="name" required autoComplete="name" className={input} placeholder="Your name" />

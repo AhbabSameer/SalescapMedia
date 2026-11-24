@@ -6,14 +6,14 @@ import { ConsultButton } from "./Consultation";
 export default function Footer() {
   return (
     <footer className="bg-ink text-white on-dark">
-      <div className="container-x py-20">
-        <div className="grid gap-10 rounded-3xl bg-ink-2 p-8 md:p-12 md:grid-cols-[1.4fr_1fr] items-center grain" data-reveal>
+      <div className="container-x py-12 md:py-20">
+        <div className="grid gap-6 md:gap-10 rounded-3xl bg-ink-2 p-6 md:p-12 md:grid-cols-[1.4fr_1fr] items-center grain" data-reveal>
           <div>
             <p className="eyebrow">Free 30-minute consultation</p>
-            <h2 className="font-display text-3xl md:text-5xl font-bold mt-3 leading-tight">Let&apos;s grow your sales.</h2>
-            <p className="mt-4 text-white/70 max-w-md">Tell us about your business. We&apos;ll reply by email within one business day with times for a call.</p>
+            <h2 className="font-display text-[1.7rem] sm:text-3xl md:text-5xl font-bold mt-2 md:mt-3 leading-tight">Let&apos;s grow your sales.</h2>
+            <p className="mt-3 md:mt-4 text-sm md:text-base text-white/70 max-w-md">Tell us about your business. We&apos;ll reply by email within one business day with times for a call.</p>
           </div>
-          <div className="flex flex-wrap gap-3 md:justify-end">
+          <div className="flex flex-wrap gap-2.5 md:gap-3 md:justify-end">
             <ConsultButton />
             <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
               WhatsApp us
@@ -21,8 +21,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
+        <div className="mt-10 md:mt-16 grid grid-cols-2 gap-x-6 gap-y-8 md:gap-10 lg:grid-cols-4">
+          <div className="col-span-2 sm:col-span-1">
             <p className="font-display text-xl font-bold">
               Salescap<span className="text-accent">.</span>Media
             </p>
@@ -34,7 +34,7 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <p className="text-sm font-semibold text-white/50 mb-4">Company</p>
+            <p className="text-sm font-semibold text-white/50 mb-3 md:mb-4">Company</p>
             <ul className="grid gap-2 text-sm">
               {nav.map((n) => (
                 <li key={n.href}>
@@ -44,7 +44,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <p className="text-sm font-semibold text-white/50 mb-4">Services</p>
+            <p className="text-sm font-semibold text-white/50 mb-3 md:mb-4">Services</p>
             <ul className="grid gap-2 text-sm">
               {services.slice(0, 6).map((s) => (
                 <li key={s.slug}>
@@ -54,7 +54,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <p className="text-sm font-semibold text-white/50 mb-4">Follow</p>
+            <p className="text-sm font-semibold text-white/50 mb-3 md:mb-4">Follow</p>
             <ul className="grid gap-2 text-sm">
               {site.socials.map((s) => (
                 <li key={s.label}>
@@ -65,7 +65,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-wrap justify-between gap-4 border-t border-white/10 pt-6 text-xs text-white/50">
+        <div className="mt-10 md:mt-16 flex flex-wrap justify-between gap-4 border-t border-white/10 pt-6 text-xs text-white/50">
           <p>© 2026 {site.name}. All rights reserved.</p>
           <a href="#top" className="hover:text-white transition">Back to top ↑</a>
         </div>

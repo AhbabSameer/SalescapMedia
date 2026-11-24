@@ -72,15 +72,15 @@ function FaqRow({ item }: { item: Item }) {
     <details ref={details} data-open="false" className="group">
       <summary
         onClick={toggle}
-        className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 font-semibold text-lg transition-colors hover:text-accent"
+        className="flex cursor-pointer list-none items-center justify-between gap-4 md:gap-6 py-4 md:py-5 font-semibold md:text-lg transition-colors hover:text-accent"
       >
         {item.q}
-        <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-line transition-[transform,background-color,color,border-color] duration-400 ease-out group-data-[open=true]:rotate-45 group-data-[open=true]:bg-accent group-data-[open=true]:border-accent group-data-[open=true]:text-white">
+        <span className="grid h-7 w-7 md:h-8 md:w-8 shrink-0 place-items-center rounded-full border border-line transition-[transform,background-color,color,border-color] duration-400 ease-out group-data-[open=true]:rotate-45 group-data-[open=true]:bg-accent group-data-[open=true]:border-accent group-data-[open=true]:text-white">
           +
         </span>
       </summary>
       <div ref={panel} className="overflow-hidden">
-        <p className="pb-5 text-muted leading-relaxed max-w-3xl">{item.a}</p>
+        <p className="pb-4 md:pb-5 text-sm md:text-base text-muted leading-relaxed max-w-3xl">{item.a}</p>
       </div>
     </details>
   );

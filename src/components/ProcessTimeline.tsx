@@ -116,13 +116,13 @@ export default function ProcessTimeline({ steps, tone = "dark" }: { steps: Step[
       <div ref={track} className={`absolute ${dark ? "bg-white/15" : "bg-line"}`} aria-hidden>
         <div ref={fill} className="h-full w-full bg-accent" style={{ transform: "scale(0)" }} />
       </div>
-      <ol className="relative grid gap-10 md:grid-cols-5 md:gap-0">
+      <ol className="relative grid gap-6 md:grid-cols-5 md:gap-0">
         {steps.map((s, i) => (
           <li
             key={s.title}
             data-step
             data-active="false"
-            className="group relative pl-12 md:pl-0 md:pr-8"
+            className="group relative pl-10 md:pl-0 md:pr-8"
           >
             <span
               data-dot
@@ -134,8 +134,8 @@ export default function ProcessTimeline({ steps, tone = "dark" }: { steps: Step[
             </span>
             <div className="transition-opacity duration-500 opacity-40 group-data-[active=true]:opacity-100 md:mt-6">
               <span className="font-display text-accent text-sm font-bold">0{i + 1}</span>
-              <h3 className="font-display text-xl font-bold mt-2">{s.title}</h3>
-              <p className={`text-sm mt-2 ${dark ? "text-white/65" : "text-muted"}`}>{s.text}</p>
+              <h3 className="font-display text-lg md:text-xl font-bold mt-1 md:mt-2">{s.title}</h3>
+              <p className={`text-sm mt-1 md:mt-2 ${dark ? "text-white/65" : "text-muted"}`}>{s.text}</p>
             </div>
           </li>
         ))}

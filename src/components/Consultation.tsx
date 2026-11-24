@@ -96,12 +96,12 @@ export function ConsultationProvider({ children }: { children: React.ReactNode }
       {open && (
         <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-0 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="consult-title">
           <div ref={backdrop} className="absolute inset-0 bg-ink/60 backdrop-blur-sm" onClick={close} />
-          <div ref={panel} className="relative w-full max-w-lg max-h-[92vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl bg-paper p-6 sm:p-8 shadow-2xl">
+          <div ref={panel} className="relative w-full max-w-lg max-h-[92vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl bg-paper p-5 sm:p-8 shadow-2xl">
             <button onClick={close} aria-label="Close" className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full hover:bg-black/5 transition">
               ✕
             </button>
             <p className="eyebrow">Free · 30 minutes · No obligation</p>
-            <h2 id="consult-title" className="font-display text-2xl font-bold mt-2 mb-6">
+            <h2 id="consult-title" className="font-display text-xl sm:text-2xl font-bold mt-2 mb-4 sm:mb-6 pr-8">
               Book your free consultation
             </h2>
             <ContactForm compact />

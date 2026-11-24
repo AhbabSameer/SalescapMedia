@@ -44,7 +44,7 @@ export default function FloatingContact() {
   const msg = encodeURIComponent("Hi Salescap Media! I'd like to know more about your services.");
 
   return (
-    <div ref={root} className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+    <div ref={root} className="fixed bottom-4 right-4 md:bottom-5 md:right-5 z-50 flex flex-col items-end gap-3">
       {open && (
         <div ref={list} className="flex flex-col items-end gap-3">
           <a
@@ -82,7 +82,7 @@ export default function FloatingContact() {
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Close contact options" : "Chat with us"}
         aria-expanded={open}
-        className="relative grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-xl shadow-[#25D366]/30 transition hover:scale-105 active:scale-95"
+        className="relative grid h-12 w-12 md:h-14 md:w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-xl shadow-[#25D366]/30 transition hover:scale-105 active:scale-95"
       >
         {!open && <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-30 motion-reduce:hidden" />}
         <span className={`transition-transform duration-300 ${open ? "rotate-90" : ""}`}>
